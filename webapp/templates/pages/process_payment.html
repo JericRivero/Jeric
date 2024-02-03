@@ -1,0 +1,90 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Processed</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .payment-confirmation {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="payment-confirmation">
+                    <h2 class="mb-4">Payment Processed Successfully!</h2>
+                    <p>Thank you for your purchase. Your payment has been processed successfully.</p>
+                    <button onclick="continueShopping()" class="btn btn-primary mt-3" data-dashboard-url="{% url 'dashboard' %}">Continue Shopping</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+
+    <script>
+        // Automatically show the notification on page load
+        document.addEventListener("DOMContentLoaded", function() {
+            showSwal('success-message');
+        });
+
+        function showSwal(type) {
+            if (type === 'success-message') {
+                swal({
+                    title: 'Congratulations!',
+                    text: 'Your payment has been processed successfully.',
+                    type: 'success',
+                    button: {
+                        text: "Continue Shopping",
+                        value: true,
+                        visible: true,
+                        className: "btn btn-primary"
+                    }
+                }).then((value) => {
+                    if (value) {
+                        continueShopping();
+                    }
+                });
+            } else {
+                swal("Error occurred!");
+            }
+        }
+
+function continueShopping() {
+            window.location.href = "{% url 'dashboard' %}";
+        }
+
+        
+        setTimeout(function() {
+            continueShopping();
+        }, 5000);
+    </script>
+
+</body>
+
+</html>

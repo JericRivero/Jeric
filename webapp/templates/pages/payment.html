@@ -1,0 +1,184 @@
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .payment-form {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .payment-options {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .payment-option {
+            flex: 1;
+            text-align: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .payment-option:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* Additional styles for appealing page structure */
+        h2 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        .details-section {
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="payment-form">
+                    <h2 class="mb-4">Select Payment Method</h2>
+                    <div class="payment-options">
+                        <div class="payment-option" onclick="showCardDetails()">
+                            <img src="{% static 'images/credit-card-logo-black-3.png' %}" alt="Credit/Debit Card" width="50">
+                            <p>Credit/Debit Card</p>
+                        </div>
+                        <div class="payment-option" onclick="confirmCashOnDelivery()">
+                            <img src="{% static 'images/cash-on-delivery-1851649-1569374.png' %}" alt="Cash on Delivery" width="50">
+                            <p>Cash on Delivery</p>
+                        </div>
+                        <div class="payment-option" onclick="showPayPalDetails()">
+                            <img src="{% static 'images/paypal-icon.png' %}" alt="PayPal" width="50">
+                            <p>PayPal</p>
+                        </div>
+                    </div>
+                    <form action="{% url 'process_payment' %}" method="post" id="paymentForm">
+                        {% csrf_token %}
+                        <div id="cardDetails" style="display: none;" class="details-section">
+                            <h2>Card Details</h2>
+                            <div class="form-group">
+                                <label for="cardNumber">Card Number:</label>
+                                <input type="text" id="cardNumber" name="cardNumber" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="expiryDate">Expiry Date:</label>
+                                <input type="text" id="expiryDate" name="expiryDate" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="cvv">CVV:</label>
+                                <input type="text" id="cvv" name="cvv" class="form-control" required>
+                            </div>
+                        </div>
+                        <div id="codDetails" style="display: none;" class="details-section">
+                            <h2>Cash on Delivery</h2>
+                            <p>Your order will be delivered to your address, and you can pay in cash upon delivery.</p>
+                        </div>
+                        <div id="paypalDetails" style="display: none;" class="details-section">
+                            <h2>PayPal Details</h2>
+                            <p>Please log in to your PayPal account to complete the payment.</p>
+                        </div>
+                        <div class="form-group mt-3">
+                            <button type="submit" class="btn btn-success btn-block">Pay Now</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert@2.1.2/dist/sweetalert.min.js"></script>
+
+
+
+   <script>
+    function showCardDetails() {
+        document.getElementById('cardDetails').style.display = 'block';
+        document.getElementById('codDetails').style.display = 'none';
+        document.getElementById('paypalDetails').style.display = 'none';
+    }
+
+    function showCODDetails() {
+        document.getElementById('cardDetails').style.display = 'none';
+        document.getElementById('codDetails').style.display = 'block';
+        document.getElementById('paypalDetails').style.display = 'none';
+    }
+
+    function showPayPalDetails() {
+        document.getElementById('cardDetails').style.display = 'none';
+        document.getElementById('codDetails').style.display = 'none';
+        document.getElementById('paypalDetails').style.display = 'block';
+    }
+
+    // Add SweetAlert for success message
+    function showSwal(type) {
+        if (type === 'success-message') {
+            swal({
+                title: 'Congratulations!',
+                text: 'Your payment has been processed successfully.',
+                type: 'success',
+                button: {
+                    text: "Continue",
+                    value: true,
+                    visible: true,
+                    className: "btn btn-primary"
+                }
+            }).then((value) => {
+                if (value) {
+                    window.location.href = "{% url 'dashboard' %}";
+                }
+            });
+        } else {
+            swal("Error occurred!");
+        }
+    }
+
+    function confirmCashOnDelivery() {
+        swal({
+            title: 'Confirm Cash on Delivery?',
+            text: 'Are you sure you want to proceed with Cash on Delivery?',
+            icon: 'warning',
+            buttons: true,
+        }).then((willProceed) => {
+            if (willProceed) {
+                // Display success message
+                showSwal('success-message');
+            }
+        });
+    }
+</script>
+</body>
+
+</html>
+{% endblock %}

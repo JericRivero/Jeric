@@ -1,0 +1,86 @@
+{% extends 'pages/index.html' %}
+{% load static%}
+{% block title %}
+    Contacts
+{% endblock title %}
+
+{% block content %}
+    <section class="contact">
+        <div class="container">
+            <h1>Contact Us</h1>
+            <p>Feel free to reach out to us using the information below:</p>
+
+            <div class="contact-details">
+                <p><strong>Address:</strong> J-TECH </p>
+                <p><strong>Phone:</strong> 09087654432</p>
+                <p><strong>Email:</strong> Jtech@tech.com</p>
+            </div>
+
+           <div class="social-media-icons">
+<a href="facebook.com" target="_blank"><img src="{% static 'images/facebook-13.png' %}" alt="Facebook" style="width: 50px; height: 50px; margin-right: 10px;"></a>
+<a href="#" target="_blank"><img src="{% static 'images/Twitter-Symbol.png' %}" alt="Twitter" style="width: 80px; height: 50px; margin-right: 10px;"></a>
+<a href="#" target="_blank"><img src="{% static 'images/1559063342instagram-Logo-PNG-Transparent-Background.png' %}" alt="Instagram" style="width: 50px; height: 50px; margin-right:15px;"> </a>
+<a href="#" target="_blank"><img src="{% static 'images/Gmail-Logo.png' %}" alt="Google" style="width: 70px; height: 40px; margin-right: 10px;"></a>
+
+</div>
+        </div>
+    </section>
+
+    <style> 
+
+    
+    body {
+        position: relative;
+        background: url("{% static 'images/VBV.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+    }
+
+    body::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.0); 
+        z-index: -1; 
+    }
+
+  
+    .container h1{
+       font-size: 58px;
+        color:#4b0082;
+        font-family: sans-serif;
+
+    }
+     .container p{
+       font-size: 17px;
+        color:black;
+        font-family: sans-serif;
+
+    }
+
+   
+
+        .social-media-icons {
+            position: fixed;
+            top:580px;
+            right: 300px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .social-media-icons a {
+            margin-left: 30px;
+        }
+
+</style>
+
+
+
+
+
+    
+{% endblock content %}

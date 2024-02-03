@@ -1,0 +1,66 @@
+{% extends 'pages/index.html' %}  
+{% load static%}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center">
+            <h1 class="display-4 mb-4">Our Services</h1>
+            <p class="lead">Welcome to our platform! We are committed to providing exceptional services to enhance your online experience.</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <img src="{% static 'images/online-shopping.png' %}" class="card-img-top" alt="Online Shopping">
+                <div class="card-body">
+                    <h2 class="card-title">Online Shopping</h2>
+                    <p class="card-text">Explore a diverse range of products available for online shopping. From electronics to fashion, we have it all. Enjoy the convenience of shopping from the comfort of your home.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <img src="{% static 'images/secure-checkout.png' %}" class="card-img-top" alt="Secure Checkout">
+                <div class="card-body">
+                    <h2 class="card-title">Fast and Secure Checkout</h2>
+                    <p class="card-text">Experience a fast and secure checkout process. Our platform ensures that your transactions are protected, providing you with a seamless and worry-free shopping experience.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <img src="{% static 'images/user-friendly.jpg' %}" class="card-img-top" alt="User-Friendly Dashboard">
+                <div class="card-body">
+                    <h2 class="card-title">User-Friendly Dashboard</h2>
+                    <p class="card-text">Access your personalized dashboard upon registration. Easily manage orders, track shipments, and update account information. Our user-friendly interface makes navigation a breeze.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <img src="{% static 'images/reliable-delivery.jpg' %}" class="card-img-top" alt="Reliable Delivery">
+                <div class="card-body">
+                    <h2 class="card-title">Reliable Delivery</h2>
+                    <p class="card-text">Count on us for reliable and timely delivery services. We ensure that your orders reach you in perfect condition and on time. Track your shipments and stay informed throughout the delivery process.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <img src="{% static 'images/customer-support.png' %}" class="card-img-top" alt="Responsive Customer Support">
+                <div class="card-body">
+                    <h2 class="card-title">Responsive Customer Support</h2>
+                    <p class="card-text">Have questions or need assistance? Our dedicated customer support team is here to help. Reach out to us via email or live chat, and we'll provide the support you need promptly.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,111 @@
+{% extends "pages/index.html" %}
+{% load static%}
+{% block title %}
+    About Us
+{% endblock title %}
+
+{% block content %}
+    <section class="about-us">
+        <div class="container">
+            <h1>About JTech</h1>
+            <p>Welcome to JTech, your ultimate destination for the best in gadget products and technology.</p>
+        </div>
+    </section>
+
+    <section class="our-story">
+        <div class="container">
+            <h2>Our Story</h2>
+            <p>Founded with passion and fueled by innovation, JTech started as a vision to bring cutting-edge technology to your fingertips. Our journey has been marked by challenges, triumphs, and a commitment to delivering the latest and greatest in the tech world.</p>
+           <div style="text-align:center;">
+            <img src="{% static 'images/story.jpg' %}" alt="Our Story Image" style="max-width: 600px;">
+             </div>
+        </div>
+    </section>
+
+    <section class="our-values">
+        <div class="container">
+            <h2>Our Values</h2>
+            <p>At JTech, we are driven by a set of core values—quality, innovation, and customer satisfaction. These principles guide every aspect of our business, ensuring that you receive products that meet the highest standards.</p>
+            <div style="text-align: center;">
+            <img src="{% static 'images/Values.jpeg' %}" alt="Our Values Image" style="max-width: 600px;">
+              </div>
+        </div>
+    </section>
+
+  <section class="our-team">
+    <div class="container">
+        <h2>Our Team</h2>
+        <p>Meet the passionate individuals behind JTech, each contributing their expertise to create an exceptional online shopping experience for you.</p>
+        <div style="text-align: center;">
+            <img src="{% static 'images/teamwork-and-team-building.png' %}" alt="Our Team Image" style="max-width: 620px;">
+        </div>
+    </div>
+</section>
+
+    <section class="why-choose-jtech">
+        <div class="container">
+            <h2>Why Choose JTech?</h2>
+            <p>At JTech, we go beyond selling products. We offer an unparalleled shopping experience with features like:</p>
+            <ul>
+                <li>Curated selection of the latest gadgets</li>
+                <li>Exclusive discounts and vouchers for our members</li>
+                <li>Fast and secure delivery</li>
+                <li>Responsive customer support</li>
+            </ul>
+            <p>Join JTech today and elevate your tech lifestyle!</p>
+            <div style="text-align: center;">
+            <img src="{% static 'images/join.jpg' %}" alt="Why Choose JTech Image" style="max-width:600px;">
+          </div>
+        </div>
+    </section>
+
+    
+
+  <style>
+       body {
+        position: relative;
+        background: url("{% static 'images/BGGG.jpg' %}") no-repeat center center fixed;
+        background-size: cover;
+        color: #fff;
+    }
+ body::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.0); 
+        z-index: -1; 
+    }
+
+    .hero {
+        color: black;
+    }
+
+    .container h1{
+        font-size: 50px;
+        color:#4b0082;
+        font-family: sans-serif;
+    }
+    .hero p, {
+       font-size: 20px;
+    }
+    .container h2{
+       font-size: 30px;
+        color:#4b0082;
+        font-family: sans-serif;
+
+    }
+     .container p{
+       font-size: 15px;
+        color:black;
+        font-family: sans-serif;
+
+    }
+    .container ul{
+        color: black;
+    }
+  </style>
+
+{% endblock content %}
